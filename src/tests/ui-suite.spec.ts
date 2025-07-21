@@ -41,7 +41,7 @@ test('T001 – favourites mirror live view', async ({ page }) => {
   console.log('Test T001 completed.');
 });
 
-/* ───────────────────────────── T002 ───────────────────────────── */
+
 test('T002 – YouTube channel & video', async ({ page }) => {
   console.log('Test T002 started.');
 
@@ -66,7 +66,6 @@ test('T002 – YouTube channel & video', async ({ page }) => {
   console.log('Test T002 completed.');
 });
 
-/* ───────────────────────────── T003 ───────────────────────────── */
 test('T003 – language & theme change', async ({ page }) => {
   console.log('Test T003 started.');
   console.log('Opening home page…');

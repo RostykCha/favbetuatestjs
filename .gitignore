@@ -1,0 +1,20 @@
+# Ignore Playwright test results and Allure reports
+results/
+allure-results/
+allure-report/
+
+# Node.js dependencies and build output
+node_modules/
+dist/
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# OS metadata
+.DS_Store
+
+# TypeScript build info
+*.tsbuildinfo

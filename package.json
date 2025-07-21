@@ -1,0 +1,25 @@
+{
+  "name": "favbetuatestjs",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.1",
+    "allure-playwright": "^3.3.2",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "prettier": "^3.2.5"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": ""
+}

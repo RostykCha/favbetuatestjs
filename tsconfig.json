@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "types": ["node", "playwright"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["dist", "node_modules"]
+}

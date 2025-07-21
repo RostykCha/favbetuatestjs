@@ -22,7 +22,7 @@ export abstract class BasePage {
     modulePath: string,
     exportName: string
   ): Promise<T> {
-    await this.page.locator(clickLocator).click();
+    await this.page.locator(clickLocator).first().click();
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const mod = require(modulePath);
     const Ctor = (mod[exportName] ?? mod.default) as new (p: Page) => T;
@@ -48,9 +48,9 @@ export abstract class BasePage {
 
   async closeNotificationIfPresent(): Promise<this> {
     const pop = this.page.locator(LOC.notification.close);
-    if (await pop.isVisible({ timeout: 2000 })) {
+    if (await pop.isVisible({ timeout: 4000 })) {
       await pop.click();
-      await pop.waitFor({ state: 'hidden', timeout: 2000 });
+      await pop.waitFor({ state: 'hidden', timeout: 4000 });
     }
     return this;
   }

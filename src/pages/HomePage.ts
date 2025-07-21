@@ -1,22 +1,20 @@
+import { expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { LOC } from '../locators';
+import YoutubePage from './YouTubePage';
 
-export class HomePage extends BasePage {
-  async open() {
-    await this.goto('https://example.com', /Example/i);
+export default class HomePage extends BasePage {
+  async open(): Promise<this> {
+    await this.goto(LOC.url, /Favbet/i);
+    return this;
   }
 
-  async login(user: { email: string; pass: string }) {
-    await this.page.fill(LOC.login.email, user.email);
-    await this.page.fill(LOC.login.pass, user.pass);
-    await this.page.click(LOC.login.submit);
+  async openHomePage(): Promise<this> {
+    return this.open();
   }
 
-  async gotoLive(): Promise<LivePage> {
-    // Placeholder stub for LivePage navigation
-    return {} as LivePage;
+  async openYoutubeFromFooter(): Promise<YoutubePage> {
+    await this.page.locator(LOC.youtube.icon).click();
+    return new YoutubePage(this.page);
   }
 }
-
-// Placeholder type for LivePage
-type LivePage = unknown;

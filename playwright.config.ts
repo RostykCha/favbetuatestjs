@@ -1,37 +1,47 @@
-// This mirrors TestNG’s parallel-suite config.
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './src/tests',
   workers: 5,
   retries: process.env.CI ? 2 : 0,
+
   reporter: [
     ['list'],
-    ['html', { open: 'never' }],
+    ['html',  { open: 'never' }],
     ['junit', { outputFile: 'results/ui.xml' }],
     ['allure-playwright']
   ],
+
   use: {
-    headless: true,
+    baseURL: 'https://www.favbet.ua/en/',
+    headless: false,
+    channel: 'chrome',                                  
+    viewport: { width: 1280, height: 800 },
+
+  
+    userAgent:
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
+      'AppleWebKit/537.36 (KHTML, like Gecko) ' +
+      'Chrome/125.0.0.0 Safari/537.36',
+
+    launchOptions: {
+      args: [
+        '--disable-blink-features=AutomationControlled', 
+        '--start-maximized'
+      ]
+    },
+
     trace: 'retain-on-failure',
-    video: 'retain-on-failure'
+    video: 'retain-on-failure',
+
+    timeout: 30000, // 30 seconds for each test
+    expect: { timeout: 10000 } // 10 seconds for expect conditions
   },
+
   projects: [
     {
       name: 'chromium-desktop',
-      use: { ...devices['Desktop Chrome'] }
-    },
-    {
-      name: 'mobile-chrome',
-      use: { ...devices['Pixel 7'] }
-    },
-    {
-      name: 'webkit-desktop',
-      use: { ...devices['Desktop Safari'] }
-    },
-    {
-      name: 'mobile-safari',
-      use: { ...devices['iPhone 14'] }
+      use: {}                          
     }
   ]
 });

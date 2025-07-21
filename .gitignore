@@ -1,7 +1,9 @@
 # Ignore Playwright test results and Allure reports
 results/
+test-results/
 allure-results/
 allure-report/
+playwright-report/
 
 # Node.js dependencies and build output
 node_modules/

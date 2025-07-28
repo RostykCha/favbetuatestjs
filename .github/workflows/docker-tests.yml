@@ -1,0 +1,69 @@
+name: Playwright Tests with Docker
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Build Docker image
+      run: docker build -t favbet-ui-tests .
+      
+    - name: Run tests in Docker
+      run: |
+        docker run \
+          --rm \
+          -v ${{ github.workspace }}/test-results:/app/test-results \
+          -v ${{ github.workspace }}/allure-results:/app/allure-results \
+          -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
+          -v ${{ github.workspace }}/results:/app/results \
+          favbet-ui-tests
+          
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: |
+          test-results/
+          playwright-report/
+          results/
+        retention-days: 30
+        
+    - name: Upload Allure results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: allure-results
+        path: allure-results/
+        retention-days: 30
+        
+    - name: Generate Allure report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_report: allure-report
+        gh_pages: gh-pages
+        
+    - name: Deploy Allure report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-report
+        publish_branch: gh-pages

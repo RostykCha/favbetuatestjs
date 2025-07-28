@@ -1,1 +1,1 @@
-[]
+[{"uid":"a18b0548a3339b02","name":"T001 – favourites list size changes after add & remove","time":{"start":1753742310587,"stop":1753742310590,"duration":3},"status":"failed","severity":"normal"},{"uid":"6f54da2fe77387c2","name":"T002 – YouTube channel & video","time":{"start":1753742310590,"stop":1753742310594,"duration":4},"status":"failed","severity":"normal"},{"uid":"9c5d27c58785737","name":"T003 – language & theme change","time":{"start":1753742311119,"stop":1753742311122,"duration":3},"status":"failed","severity":"normal"}]

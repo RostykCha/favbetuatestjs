@@ -26,7 +26,7 @@ export default defineConfig({
 
   use: {
     baseURL: 'https://www.favbet.ua/en/',
-    headless: false,
+    headless: true,
     channel:  'chrome',
     viewport: { width: 1280, height: 800 },
     userAgent:

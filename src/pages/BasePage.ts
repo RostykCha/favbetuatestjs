@@ -1,14 +1,15 @@
 import { Page, expect } from '@playwright/test';
 import { LOC } from '../locators';
 
+/* type‑only imports – no runtime code pulled in, so no circular load */
+import type SettingsPage   from './SettingsPage';
 import type LoginPage      from './LoginPage';
 import type RegisterPage   from './RegisterPage';
 import type LivePage       from './LivePage';
-import type FavoritesPage  from './FavoritesPage';
-import type SettingsPage   from './SettingsPage';
+import type FavoritesPage  from './FavoritesPage'; 
 
 export abstract class BasePage {
-  constructor(protected readonly page: Page) {}
+  constructor(protected readonly page: Page) { }
 
   async goto(url: string, titleRe: RegExp): Promise<this> {
     await this.page.goto(url);
@@ -31,19 +32,26 @@ export abstract class BasePage {
 
   /* navigation shortcuts */
   navigateToLoginPage(): Promise<LoginPage> {
-    return this.gotoPage(LOC.auth.loginLink,    './LoginPage',    'default');
+    return this.gotoPage(LOC.auth.loginLink, './LoginPage', 'default');
   }
   navigateToRegisterPage(): Promise<RegisterPage> {
     return this.gotoPage(LOC.auth.registerLink, './RegisterPage', 'default');
   }
   navigateToLivePage(): Promise<LivePage> {
-    return this.gotoPage(LOC.home.liveMenu,     './LivePage',     'default');
+    return this.gotoPage(LOC.home.liveMenu, './LivePage', 'default');
   }
   navigateToFavoritesPage(): Promise<FavoritesPage> {
-    return this.gotoPage(LOC.menu.favourites,   './FavoritesPage','default');
+    return this.gotoPage(LOC.menu.favourites, './FavoritesPage', 'default');
   }
-  navigateToSettingsPage(): Promise<SettingsPage> {
-    return this.gotoPage(LOC.menu.settings,     './SettingsPage', 'default');
+
+  /* Settings needs a preparatory click → do it, then call gotoPage */
+  async navigateToSettingsPage(): Promise<SettingsPage> {
+    const toggle = (await this.page.locator(LOC.menu.userAvatar).count())
+      ? this.page.locator(LOC.menu.userAvatar)
+      : this.page.locator(LOC.menu.userBalanceZero);
+
+    await toggle.click();                                // open user menu
+    return this.gotoPage(LOC.menu.settingsPage, './SettingsPage', 'default');
   }
 
   async closeNotificationIfPresent(): Promise<this> {

@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3","T001 – favourites list size changes after add & remove","chromium-desktop","Mon Jul 28 22:38:30 GMT 2025","failed","Mon Jul 28 22:38:30 GMT 2025","","ui-suite.spec.ts","",""
-"","4","T002 – YouTube channel & video","chromium-desktop","Mon Jul 28 22:38:30 GMT 2025","failed","Mon Jul 28 22:38:30 GMT 2025","","ui-suite.spec.ts","",""
-"","3","T003 – language & theme change","chromium-desktop","Mon Jul 28 22:38:31 GMT 2025","failed","Mon Jul 28 22:38:31 GMT 2025","","ui-suite.spec.ts","",""
+"","4","T003 – language & theme change","chromium-desktop","Mon Jul 28 22:44:39 GMT 2025","failed","Mon Jul 28 22:44:39 GMT 2025","","ui-suite.spec.ts","",""
+"","4","T002 – YouTube channel & video","chromium-desktop","Mon Jul 28 22:44:38 GMT 2025","failed","Mon Jul 28 22:44:38 GMT 2025","","ui-suite.spec.ts","",""
+"","4","T001 – favourites list size changes after add & remove","chromium-desktop","Mon Jul 28 22:44:38 GMT 2025","failed","Mon Jul 28 22:44:38 GMT 2025","","ui-suite.spec.ts","",""

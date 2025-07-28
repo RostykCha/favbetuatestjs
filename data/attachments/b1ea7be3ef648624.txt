@@ -1,0 +1,2 @@
+==========  T001 started  ==========
+Opening home page …
